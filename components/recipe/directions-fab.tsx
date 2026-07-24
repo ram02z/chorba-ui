@@ -73,7 +73,7 @@ export function DirectionsFab() {
   return (
     <a
       aria-label={label}
-      className={`fixed right-app-gutter bottom-8 z-30 block h-12 overflow-hidden rounded-full bg-on-surface font-bold text-surface shadow-xl transition-[width,transform,background-color,color] duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:hidden ${
+      className={`fixed right-4 bottom-4 z-30 block h-12 overflow-hidden rounded-full bg-on-surface font-bold text-surface shadow-xl transition-[width,transform,background-color,color] duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:hidden ${
         expanded ? "w-48" : "w-12"
       }`}
       href={href}

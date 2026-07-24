@@ -43,6 +43,8 @@ describe("DirectionsFab", () => {
       "#directions-section",
     );
     expect(screen.getByRole("link", { name: "View directions" })).toHaveClass("w-12");
+    expect(screen.getByRole("link", { name: "View directions" })).toHaveClass("bottom-4");
+    expect(screen.getByRole("link", { name: "View directions" })).toHaveClass("right-4");
     expect(screen.getByText("View directions")).toHaveClass("opacity-0");
     expect(screen.getByText("View directions")).toHaveClass("absolute");
     expect(screen.getByTestId("fab-arrow")).not.toHaveClass("rotate-180");
