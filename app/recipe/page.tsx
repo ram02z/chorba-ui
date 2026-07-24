@@ -54,7 +54,7 @@ export default async function RecipePage({ searchParams }: RecipePageProps) {
           </div>
         </div>
       </nav>
-      <main className="mx-auto w-full max-w-container-max flex-grow px-app-gutter py-app-md sm:py-app-lg lg:py-app-xl">
+      <main className="mx-auto w-full max-w-container-max flex-grow px-app-gutter pt-app-md pb-28 sm:pt-app-lg lg:py-app-xl lg:pb-app-xl">
         <RecipePageHeader recipe={result.recipe} sourceUrl={validated.url} />
         <div className="grid grid-cols-1 gap-app-xl lg:grid-cols-12">
           <div className="lg:col-span-5">
