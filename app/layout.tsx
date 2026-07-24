@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Work_Sans } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const display = Be_Vietnam_Pro({
@@ -29,7 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {children}
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
