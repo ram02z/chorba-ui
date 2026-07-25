@@ -9,7 +9,7 @@ type DirectionsListProps = {
 export function DirectionsList({ directions }: DirectionsListProps) {
   return (
     <section aria-labelledby="directions-heading" className="scroll-mt-24" id="directions-section">
-      <h2 className="border-b border-outline-variant/30 pb-app-sm font-headline text-headline text-on-surface" id="directions-heading">
+      <h2 className="border-b border-outline-variant/30 pb-app-sm font-headline text-headline-lg text-on-surface" id="directions-heading">
         Directions
       </h2>
       <div className="relative mt-app-md space-y-app-lg pl-1 sm:pl-0">
@@ -20,7 +20,7 @@ export function DirectionsList({ directions }: DirectionsListProps) {
           return (
             <div className="space-y-app-sm" key={direction.id}>
               {showSection ? (
-                <h3 className="font-display text-xl font-semibold text-on-surface">
+                <h3 className="font-headline text-headline text-on-surface">
                   {direction.section}
                 </h3>
               ) : null}

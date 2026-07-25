@@ -58,8 +58,10 @@
   --text-display: 4rem;
   --text-display--line-height: 1.1;
   --text-display--letter-spacing: -0.02em;
-  --text-headline: 2rem;
-  --text-headline--line-height: 1.2;
+  --text-headline: 1.75rem;
+  --text-headline--line-height: 1.5;
+  --text-headline-lg: 2.5rem;
+  --text-headline-lg--line-height: 1.2;
   --text-title: 1.5rem;
   --text-title--line-height: 1.3;
   --spacing-app-xs: 0.25rem;

@@ -17,7 +17,7 @@ export function HighlightedText({ text, highlights }: HighlightedTextProps) {
       {parts.map((part, index) =>
         part.highlighted ? (
           <span
-            className="mx-0.5 whitespace-nowrap rounded bg-highlight-bg px-1 py-0.5 text-sm font-medium text-highlight-text dark:bg-highlight-bg-dark dark:text-highlight-text-dark"
+            className="mx-0.5 rounded bg-highlight-bg px-1 py-0.5 text-sm font-medium text-highlight-text dark:bg-highlight-bg-dark dark:text-highlight-text-dark"
             key={`${part.text}-${index}`}
           >
             {part.text}

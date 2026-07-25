@@ -28,7 +28,7 @@ export function IngredientChecklist({ ingredients }: IngredientChecklistProps) {
   return (
     <section aria-labelledby="ingredients-heading" className="scroll-mt-24" id="ingredients-section">
       <div className="mb-app-md flex items-center justify-between border-b border-outline-variant/30 pb-app-sm">
-        <h2 className="font-headline text-headline text-on-surface" id="ingredients-heading">Ingredients</h2>
+        <h2 className="font-headline text-headline-lg text-on-surface" id="ingredients-heading">Ingredients</h2>
         <span className="rounded-full bg-primary-fixed px-app-sm py-app-xs text-xs font-semibold text-primary dark:bg-highlight-bg-dark dark:text-highlight-text-dark">
           {ingredients.length} items
         </span>
