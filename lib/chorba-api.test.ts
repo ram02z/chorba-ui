@@ -28,7 +28,7 @@ describe("getRecipe", () => {
     vi.unstubAllGlobals();
   });
 
-  it("fetches a recipe from the configured API without caching", async () => {
+  it("fetches a recipe from the configured API with 30-day caching", async () => {
     vi.stubEnv(
       "CHORBA_API_URL",
       "https://your-chorba-api.example.com",
@@ -45,20 +45,24 @@ describe("getRecipe", () => {
 
     expect(fetchMock).toHaveBeenCalledWith(
       "https://your-chorba-api.example.com/recipe?url=https%3A%2F%2Fsource.example.com%2Fr",
-      { cache: "no-store" },
+      {
+        cache: "force-cache",
+        next: { revalidate: 60 * 60 * 24 * 30 },
+      },
     );
   });
 
-  it("returns empty when the API cannot extract a recipe", async () => {
+  it("returns an error for a legacy successful empty response", async () => {
     vi.stubEnv("CHORBA_API_URL", "https://api.example.com");
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(jsonResponse({ recipe: null })));
 
     await expect(getRecipe("https://source.example.com/r")).resolves.toEqual({
-      status: "empty",
+      status: "error",
+      message: "The recipe service returned an unexpected response.",
     });
   });
 
-  it("returns invalid for API validation errors", async () => {
+  it("returns invalid when the API cannot extract a recipe", async () => {
     vi.stubEnv("CHORBA_API_URL", "https://api.example.com");
     vi.stubGlobal(
       "fetch",
@@ -67,7 +71,7 @@ describe("getRecipe", () => {
 
     await expect(getRecipe("https://source.example.com/r")).resolves.toEqual({
       status: "invalid",
-      message: "The recipe URL was rejected by the extraction service.",
+      message: "The recipe URL could not be parsed by the extraction service.",
     });
   });
 

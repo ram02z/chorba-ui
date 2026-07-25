@@ -24,16 +24,6 @@ export default async function RecipePage({ searchParams }: RecipePageProps) {
 
   const result = await getRecipe(validated.url);
 
-  if (result.status === "empty") {
-    return (
-      <RecipeState
-        defaultUrl={validated.url}
-        title="No recipe found"
-        message="We could not extract a clean recipe from that page. Try another recipe URL."
-      />
-    );
-  }
-
   if (result.status === "invalid" || result.status === "error") {
     return (
       <RecipeState

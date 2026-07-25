@@ -46,5 +46,5 @@ export type Recipe = {
 };
 
 export type RecipeResponse = {
-  recipe: Recipe | null;
+  recipe: Recipe;
 };

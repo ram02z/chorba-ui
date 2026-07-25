@@ -2,6 +2,17 @@ export type RecipeUrlResult =
   | { ok: true; url: string }
   | { ok: false; message: string };
 
+const trackingParameters = new Set([
+  "_ga",
+  "_gl",
+  "dclid",
+  "fbclid",
+  "gclid",
+  "mc_cid",
+  "mc_eid",
+  "msclkid",
+]);
+
 export function validateRecipeUrl(
   value: string | string[] | undefined,
 ): RecipeUrlResult {
@@ -27,6 +38,20 @@ export function validateRecipeUrl(
       message: "Recipe URLs must start with http:// or https://.",
     };
   }
+
+  parsed.hash = "";
+
+  for (const key of Array.from(parsed.searchParams.keys())) {
+    const normalizedKey = key.toLowerCase();
+    if (
+      normalizedKey.startsWith("utm_") ||
+      trackingParameters.has(normalizedKey)
+    ) {
+      parsed.searchParams.delete(key);
+    }
+  }
+
+  parsed.searchParams.sort();
 
   return { ok: true, url: parsed.toString() };
 }
