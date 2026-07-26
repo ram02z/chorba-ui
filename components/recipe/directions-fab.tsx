@@ -6,9 +6,7 @@ import { ArrowDownIcon } from "../icons";
 
 export function DirectionsFab() {
   const [directionsVisible, setDirectionsVisible] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const anchorScrollLockedRef = useRef(false);
-  const unlockTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [expanded, setExpanded] = useState(true);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const label = directionsVisible ? "View ingredients" : "View directions";
   const href = directionsVisible ? "#ingredients-section" : "#directions-section";
@@ -30,21 +28,11 @@ export function DirectionsFab() {
 
   useEffect(() => {
     function onScroll() {
-      if (anchorScrollLockedRef.current) {
-        if (unlockTimeoutRef.current) {
-          clearTimeout(unlockTimeoutRef.current);
-        }
-        unlockTimeoutRef.current = setTimeout(() => {
-          anchorScrollLockedRef.current = false;
-        }, 350);
-        return;
-      }
-
-      setExpanded(true);
+      setExpanded(false);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = setTimeout(() => setExpanded(false), 700);
+      timeoutRef.current = setTimeout(() => setExpanded(true), 300);
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -54,21 +42,8 @@ export function DirectionsFab() {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      if (unlockTimeoutRef.current) {
-        clearTimeout(unlockTimeoutRef.current);
-      }
     };
   }, []);
-
-  function handleClick() {
-    anchorScrollLockedRef.current = true;
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-    if (unlockTimeoutRef.current) {
-      clearTimeout(unlockTimeoutRef.current);
-    }
-  }
 
   return (
     <a
@@ -77,7 +52,6 @@ export function DirectionsFab() {
         expanded ? "w-48" : "w-12"
       }`}
       href={href}
-      onClick={handleClick}
     >
       <span
         className={`absolute top-1/2 right-12 left-4 -translate-y-1/2 whitespace-nowrap text-left transition-opacity duration-200 ${
